@@ -1,0 +1,38 @@
+2026-06-03T20:10:01Z INFO  [api-gateway]
+Incoming request GET /recommendations
+
+2026-06-03T20:10:03Z INFO  [recommendation-service]
+Fetching user profile
+
+2026-06-03T20:10:04Z WARN  [redis-client]
+Redis GET operation taking longer than expected
+
+2026-06-03T20:10:07Z ERROR [redis-client]
+RedisTimeoutException:
+Command timed out after 5000 ms
+
+2026-06-03T20:10:08Z WARN  [recommendation-service]
+Fallback mechanism activated
+
+2026-06-03T20:10:10Z ERROR [recommendation-service]
+Failed to generate recommendations
+
+2026-06-03T20:10:12Z ERROR [api-gateway]
+504 Gateway Timeout
+
+--------------------------------
+
+2026-06-03T20:09:58Z ERROR [redis-node-3]
+No space left on device
+
+Filesystem: /dev/nvme0n1
+Disk Usage: 100%
+
+2026-06-03T20:09:59Z ERROR [redis-node-3]
+Node marked unhealthy
+
+2026-06-03T20:10:00Z ERROR [redis-cluster]
+Primary node unavailable
+
+2026-06-03T20:10:01Z WARN  [redis-cluster]
+Failover attempt unsuccessful

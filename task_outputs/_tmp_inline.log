@@ -1,0 +1,9 @@
+
+[2024-01-15 14:32:15.123] INFO: Starting deployment of myapp-deployment
+[2024-01-15 14:32:16.567] WARNING: Pod myapp-deployment-7b8c9d5f4-abc12 in Pending state
+[2024-01-15 14:32:17.890] ERROR: Pod myapp-deployment-7b8c9d5f4-abc12 failed to start
+[2024-01-15 14:32:18.123] ERROR: Failed to pull image "myapp:v1.2.3": pull access denied, repository does not exist or may require 'docker login': denied: requested access to the resource is denied
+[2024-01-15 14:32:18.456] ERROR: Pod myapp-deployment-7b8c9d5f4-abc12 status: ImagePullBackOff
+[2024-01-15 14:32:25.901] ERROR: Deployment rollout failed: deployment "myapp-deployment" exceeded its progress deadline
+[2024-01-15 14:32:26.789] WARNING: Service myapp-service has no available endpoints
+[2024-01-15 14:32:29.456] CRITICAL: Production deployment failed - rollback initiated
