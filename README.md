@@ -47,7 +47,31 @@ Unlike traditional single-prompt log analysis, AgentOps orchestrates multiple AI
 - Upload log files or paste raw logs
 
 ---
+# 🏗 Project Structure
 
+```text
+
+
+AgentOps/
+│
+├── streamlit_app.py
+├── main.py
+├── direct_llm.py
+├── production_pipeline.py
+├── tools.py
+├── requirements.txt
+│
+├── agents/
+│   ├── agents.py
+│   ├── tasks.py
+│   └── configs/
+│
+├── task_outputs/
+│
+└── README.md
+
+
+```
 # 🏗 Architecture
 
 ```text
