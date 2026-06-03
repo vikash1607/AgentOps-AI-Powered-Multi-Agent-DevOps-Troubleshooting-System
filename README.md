@@ -1,97 +1,79 @@
-# AgentOps – AI-Powered Multi-Agent DevOps Troubleshooting System
+# 🤖 AgentOps – AI-Powered Multi-Agent DevOps Troubleshooting System
 
-> **Jan 2026 – Feb 2026**  
-> Multi-agent CrewAI pipeline for production log analysis, root-cause detection, and automated remediation planning.
+> Automated Production Log Analysis, Root Cause Detection, and Remediation Planning using Multi-Agent AI
 
----
-
-## Architecture
-
-```
-Log Input
-    │
-    ▼
-┌─────────────────────┐
-│  Agent 1            │  tools: log_reader_tool
-│  DevOps Log Analyzer│  max_iter=3, max_rpm=10, max_execution_time=300s
-└────────┬────────────┘
-         │ context
-         ▼
-┌─────────────────────┐
-│  Agent 2            │  tools: (LLM knowledge)
-│  Issue Investigator │  max_iter=5, max_rpm=15, max_execution_time=600s
-└────────┬────────────┘
-         │ context
-         ▼
-┌─────────────────────┐
-│  Agent 3            │  tools: save_report_tool
-│  Solution Specialist│  max_iter=3, max_rpm=10, max_execution_time=300s
-└────────┬────────────┘
-         │
-         ▼
-  Pydantic-validated
-  SolutionPlan output
-```
+![Python](https://img.shields.io/badge/Python-3.10+-blue)
+![CrewAI](https://img.shields.io/badge/CrewAI-Multi--Agent-green)
+![OpenAI](https://img.shields.io/badge/OpenAI-GPT--4o-orange)
+![Streamlit](https://img.shields.io/badge/Streamlit-Frontend-red)
+![License](https://img.shields.io/badge/License-MIT-yellow)
 
 ---
 
-## Project Structure
+## 📌 Overview
 
-```
-agentops/
-├── streamlit_app.py              ← Comparison UI (Direct LLM vs Multi-Agent)
-├── requirements.txt
-└── agents/
-    ├── dummy_logs/
-    │   ├── kubernetes_deployment_error.log
-    │   └── database_connection_error.log
-    └── intermediate/
-        └── v1/
-            ├── agents.py         ← 3 CrewAI agents
-            ├── tasks.py          ← Tasks + Pydantic models + guardrail
-            ├── tools.py          ← log_reader_tool, save_report_tool
-            ├── main.py           ← Full pipeline runner (CLI)
-            ├── production_pipeline.py  ← Guardrail demo
-            └── direct_llm.py     ← Single-call baseline
-```
+AgentOps is an AI-powered DevOps troubleshooting system that leverages multiple specialized AI agents to analyze production logs, investigate failures, identify root causes, and generate actionable remediation plans.
+
+Unlike traditional single-prompt log analysis, AgentOps orchestrates multiple AI agents that collaborate to provide deeper insights, structured outputs, and production-ready troubleshooting workflows.
 
 ---
 
-## Setup
+## 🚀 Key Features
 
-```bash
-# 1. Clone and install
-pip install -r requirements.txt
+### 🔍 Intelligent Log Analysis
+- Production log ingestion via file upload or text input
+- Detects errors, warnings, failures, and anomalies
+- Extracts timestamps, affected services, and severity levels
 
-# 2. Set your API key
-export OPENAI_API_KEY=sk-...
+### 🕵️ Root Cause Investigation
+- Multi-agent investigation workflow
+- Identifies underlying causes instead of surface-level errors
+- Correlates events across multiple log entries
 
-# 3. Run the Streamlit comparison UI
-streamlit run streamlit_app.py
+### 🛠 Automated Remediation Planning
+- Generates step-by-step troubleshooting instructions
+- Provides bash commands and deployment fixes
+- Suggests verification and rollback procedures
 
-# OR run the CLI pipeline directly
-cd agents/intermediate/v1
-python main.py --log-file ../../dummy_logs/kubernetes_deployment_error.log
-```
+### 📊 Structured Outputs
+- Pydantic-validated responses
+- Severity classification
+- Incident timeline generation
+- Root cause reports
+
+### 🌐 Modern UI
+- Streamlit-powered dashboard
+- Compare Direct LLM vs Multi-Agent Analysis
+- Upload log files or paste raw logs
 
 ---
 
-## Agent Parameters Explained
+# 🏗 Architecture
 
-| Parameter | Description |
-|---|---|
-| `max_execution_time` | Hard timeout in seconds (e.g. 300s = 5 mins) |
-| `max_iter` | Max number of LLM iterations per agent |
-| `max_rpm` | Max LLM API requests per minute (rate limiting) |
-| `respect_context_window` | Auto-summarize if conversation exceeds model context |
-
----
-
-## Key Features
-
-- **3-Agent Sequential Pipeline** – Analyze → Investigate → Solve
-- **Pydantic Structured Output** – Every output is type-validated
-- **Guardrail Validation** – Rejects outputs with zero errors, forces retry
-- **File Tool Integration** – Agents read actual log files from disk
-- **Streamlit Comparison UI** – Side-by-side direct LLM vs multi-agent
-- **Rate Limiting & Timeouts** – Production-safe agent configuration
+```text
+                ┌────────────────────┐
+                │    Production Log   │
+                └──────────┬─────────┘
+                           │
+                           ▼
+                ┌────────────────────┐
+                │ Agent 1            │
+                │ Log Analyzer       │
+                └──────────┬─────────┘
+                           │
+                           ▼
+                ┌────────────────────┐
+                │ Agent 2            │
+                │ Issue Investigator │
+                └──────────┬─────────┘
+                           │
+                           ▼
+                ┌────────────────────┐
+                │ Agent 3            │
+                │ Solution Specialist│
+                └──────────┬─────────┘
+                           │
+                           ▼
+                ┌────────────────────┐
+                │ Remediation Report │
+                └────────────────────┘
